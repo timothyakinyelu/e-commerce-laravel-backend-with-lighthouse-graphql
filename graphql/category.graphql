@@ -1,0 +1,22 @@
+type Category {
+    id: ID!
+    name: String!
+    parent_id: Int
+    slug: String!
+    description: String
+    status: Int!
+    children: [Category!]! @hasMany
+    products: [Product!]! @belongsToMany
+}
+
+extend type Query {
+    categories: [Category!]! @paginate(defaultCount: 2)
+    parents(
+        where: _ @whereConditions(columnsEnum: "CategoriesWhereColumn")
+    ): [Category!]! @all
+    category(id: ID! @eq): Category @find
+}
+
+enum CategoriesWhereColumn {
+  PARENT @enum(value: "parent_id")
+}

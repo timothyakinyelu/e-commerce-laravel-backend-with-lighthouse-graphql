@@ -1,36 +1,10 @@
-type Category {
-    id: ID!
-    name: String!
-    parent_id: Int
-    slug: String!
-    description: String
-    status: Int!
-    children: [Category!]! @hasMany
-    products: [Product!]! @belongsToMany
-}
 
-type Product {
-    id: ID!
-    sku: String!
-    gtin: String
-    name: String!
-    short_description: String!
-    full_description: String!
-    slug: String!
-    color: String!
-    featured: Boolean!
-    status: Int!
-    stock: Int!
-}
-
-type Query {
-    categories: [Category!]! @paginate(defaultCount: 2)
-    parents(
-        where: _ @whereConditions(columnsEnum: "CategoriesWhereColumn")
-    ): [Category!]! @all
-    category(id: ID! @eq): Category @find
-}
+type Query
 
 enum CategoriesWhereColumn {
   PARENT @enum(value: "parent_id")
 }
+
+#import category.graphql
+#import product.graphql
+#import brand.graphql

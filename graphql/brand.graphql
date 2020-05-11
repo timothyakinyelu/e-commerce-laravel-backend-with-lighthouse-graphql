@@ -1,0 +1,8 @@
+type Brand {
+    id: ID!
+    name: String!
+    slug: String!
+    description: String!
+    status: Int!
+    products: [Product!]! @hasMany
+}

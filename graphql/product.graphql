@@ -1,0 +1,20 @@
+type Product {
+    id: ID!
+    brand_id: Int!
+    sku: String!
+    gtin: String
+    name: String!
+    slug: String!
+    short_description: String
+    full_description: String!
+    color: String!
+    price: Float!
+    old_price: Float
+    discount: Float
+    featured: Boolean
+    status: Int
+    stock: Int
+    image: String
+    images: String
+    brand: Brand! @belongsTo
+}
