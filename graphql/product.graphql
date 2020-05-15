@@ -18,3 +18,7 @@ type Product {
     images: String
     brand: Brand! @belongsTo
 }
+
+extend type Query {
+    products: [Product!]! @paginate(defaultCount: 10)
+}
