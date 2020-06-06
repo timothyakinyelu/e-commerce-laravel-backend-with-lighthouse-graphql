@@ -6,11 +6,11 @@ type Category {
     description: String
     status: Int!
     children: [Category!]! @hasMany
-    products: [Product!]! @belongsToMany
+    products: [Product!]! @belongsToMany(type: "connection", defaultCount: 25)
 }
 
 extend type Query {
-    categories: [Category!]! @paginate(defaultCount: 2)
+    categories: [Category!]! @field(resolver: "CatQuery@randomCategory")
     parents(
         where: _ @whereConditions(columnsEnum: "CategoriesWhereColumn")
     ): [Category!]! @all

@@ -20,5 +20,5 @@ type Product {
 }
 
 extend type Query {
-    products: [Product!]! @paginate(defaultCount: 10)
+    products: [Product!]! @paginate(type: "connection", defaultCount: 25)
 }
