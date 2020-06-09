@@ -10,13 +10,20 @@ type Category {
 }
 
 extend type Query {
-    categories: [Category!]! @field(resolver: "CatQuery@randomCategory")
+    # categories: [Category!]! @field(resolver: "CatQuery@randomCategory")
     parents(
+        where: _ @whereConditions(columnsEnum: "ParentsWhereColumn")
+    ): [Category!]! @all
+    categories(
         where: _ @whereConditions(columnsEnum: "CategoriesWhereColumn")
     ): [Category!]! @all
     category(id: ID! @eq): Category @find
 }
 
-enum CategoriesWhereColumn {
+enum ParentsWhereColumn {
   PARENT @enum(value: "parent_id")
+}
+
+enum CategoriesWhereColumn {
+  FEATURED @enum(value: "featured")
 }
