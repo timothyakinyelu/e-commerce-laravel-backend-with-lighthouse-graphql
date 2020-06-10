@@ -1,5 +1,5 @@
 type Brand {
-    id: ID!
+    id: ID! @globalId
     name: String!
     slug: String!
     description: String!

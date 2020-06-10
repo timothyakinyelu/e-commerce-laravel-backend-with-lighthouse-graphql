@@ -1,5 +1,5 @@
 type Product {
-    id: ID!
+    id: ID! @globalId
     brand_id: Int!
     sku: String!
     gtin: String
@@ -21,4 +21,5 @@ type Product {
 
 extend type Query {
     products: [Product!]! @paginate(type: "connection", defaultCount: 25)
+    product(id: ID! @globalId(decode: "ID") @eq): Product @find 
 }

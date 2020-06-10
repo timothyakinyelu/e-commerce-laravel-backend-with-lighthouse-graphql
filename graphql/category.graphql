@@ -1,5 +1,5 @@
 type Category {
-    id: ID!
+    id: ID! @globalId
     name: String!
     parent_id: Int
     slug: String!
@@ -17,7 +17,7 @@ extend type Query {
     categories(
         where: _ @whereConditions(columnsEnum: "CategoriesWhereColumn")
     ): [Category!]! @all
-    category(id: ID! @eq): Category @find
+    category(id: ID! @globalId(decode: "ID") @eq): Category @find 
 }
 
 enum ParentsWhereColumn {
